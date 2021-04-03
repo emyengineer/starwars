@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-const People = () => {
+const Planets = () => {
     return ( 
         <div>
-            <h2>People</h2>
+            <h2>Planets</h2>
         </div>
      );
 }
  
-export default People;
+export default Planets;
