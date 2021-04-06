@@ -2,6 +2,9 @@ import React , {useState} from 'react'
 import Navbar from './components/Navbar';
 import Planets from './components/Planets'
 import People from './components/People';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+const queryClient = new QueryClient();
 
 function App() {
     const [page, setPage] = useState('planets');
@@ -13,17 +16,28 @@ function App() {
     // app.use(cors())
 
   return (
-    <div className="App">
-      <h1>Star wars Info</h1>
-      <Navbar setPage={setPage}/>
-      <div className="content">
-        {
-          
-        page === 'planets'? <Planets/> : <People/>
-        }
+    <>
+    
+      <div className="App">
+        <h1>Star wars Info</h1>
+        <Navbar setPage={setPage}/>
+        <div className="content">
+          {           
+          page === 'planets'? <Planets/> : <People/>
+          }
+        </div>
       </div>
-    </div>
-  );
+    
+      <ReactQueryDevtools />
+    </>
+  )
 }
 
-export default App;
+//export default App;
+
+export default function Wraped(){
+  return(<QueryClientProvider client={queryClient}>
+          <App/>
+      </QueryClientProvider>
+  );
+} 
